@@ -5,7 +5,7 @@
     >
       <NuxtLinkLocale to="/">{{ $t("appName") }}</NuxtLinkLocale>
       <div class="flex-grow"></div>
-      <IconButton
+      <IconBtn
         class="bar-icon-btn ml-3"
         :title="$t('toggleColor')"
         @click="
@@ -15,7 +15,7 @@
         :path="mdiWhiteBalanceSunny"
         :size="23"
       />
-      <IconButton
+      <IconBtn
         class="bar-icon-btn ml-3"
         :title="$t('toggleSidebar')"
         v-if="sm"
@@ -42,7 +42,7 @@
             <NuxtLinkLocale to="/">{{ $t("appName") }}</NuxtLinkLocale>
           </div>
           <div class="main-menu mt-6 text-gray-600 ml-16">
-            <NuxtLinkLocale to="/" class="main-menu-item">{{
+            <!-- <NuxtLinkLocale to="/" class="main-menu-item">{{
               $t("Home")
             }}</NuxtLinkLocale>
             <NuxtLinkLocale to="/works" class="main-menu-item">{{
@@ -50,7 +50,7 @@
             }}</NuxtLinkLocale>
             <NuxtLinkLocale to="/about" class="main-menu-item">{{
               $t("About")
-            }}</NuxtLinkLocale>
+            }}</NuxtLinkLocale> -->
             <a
               class="main-menu-item cursor-pointer select-none"
               @click="$colorMode.preference = colorModeInfo.next"

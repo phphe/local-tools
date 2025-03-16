@@ -59,6 +59,9 @@ importers:
       vue-router:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
+      wavesurfer.js:
+        specifier: ^7.9.1
+        version: 7.9.1
 
 packages:
 
@@ -4191,6 +4194,9 @@ packages:
   watchpack@2.4.2:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
     engines: {node: '>=10.13.0'}
+
+  wavesurfer.js@7.9.1:
+    resolution: {integrity: sha512-+pG8X9c9BrfAW8KR54OPzZcAj/57sOL08He/tc6/7Mt6NCX3IfDFwexQxXVTILggGZUOUk7tFKfny32yGrysKA==}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -9150,6 +9156,8 @@ snapshots:
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
+
+  wavesurfer.js@7.9.1: {}
 
   webidl-conversions@3.0.1: {}
 
