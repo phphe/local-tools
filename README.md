@@ -73,3 +73,12 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## License
+
+This project is licensed under Commons Clause + MIT License. This means:
+- ✅ Free to use, modify and distribute
+- ✅ Can be used in personal and non-commercial projects
+- ❌ Commercial sale of the software or its derivatives is prohibited
+
+For more details, please see the [LICENSE](./LICENSE) file.

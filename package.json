@@ -1,7 +1,14 @@
 {
   "name": "nuxt-app",
-  "private": true,
+  "private": false,
   "type": "module",
+  "license": "MIT AND Commons Clause",
+  "licenses": [
+    {
+      "type": "MIT + Commons Clause",
+      "url": "./LICENSE"
+    }
+  ],
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
