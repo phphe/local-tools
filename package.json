@@ -17,17 +17,20 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/js": "^7.4.47",
     "@nuxt/fonts": "^0.11.0",
-    "@nuxt/icon": "1.11.0",
     "@nuxt/image": "1.9.0",
     "@nuxt/scripts": "0.11.2",
     "@nuxt/test-utils": "3.17.2",
+    "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^9.3.1",
     "@nuxtjs/sitemap": "^7.2.9",
     "@unhead/vue": "^2.0.0-rc.8",
     "@unocss/nuxt": "66.1.0-beta.5",
+    "@unocss/reset": "66.1.0-beta.5",
     "nuxt": "^3.16.0",
     "nuxt-gtag": "^3.0.2",
+    "sass-embedded": "^1.85.1",
     "unocss": "66.1.0-beta.5",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
