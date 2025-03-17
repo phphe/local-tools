@@ -4,8 +4,11 @@
     <div class="mt-4">
       <FileInput accept="audio/*" @change="handleFileChange" />
     </div>
-    <h2 class="text-lg mt-4" v-if="currentFile">{{ currentFile!.name }}</h2>
-    <div class="mt-4">
+    <h2 class="text-lg mt-4" v-if="currentFile">
+      {{ currentFile!.name }} -
+      <span class="text-sm italic">{{ duration.toFixed(2) }}s</span>
+    </h2>
+    <div v-show="currentFile" class="mt-4">
       <div ref="waveformRef" class="relative">
         <div id="waveform"></div>
       </div>
@@ -18,7 +21,7 @@
         </Btn>
         <Btn size="sm" @click="trim">{{ t("trim") }}</Btn>
         <span class="ml-2">
-          Zoom:
+          {{ t("zoom") }}:
           <input
             type="range"
             min="10"
@@ -28,8 +31,9 @@
           />
         </span>
         <div class="ml-2 text-sm">
-          {{ t("startTime") }}: {{ startTime.toFixed(1) }}s {{ t("endTime") }}:
-          {{ endTime.toFixed(1) }}s
+          {{ t("startTime") }}: {{ startTime.toFixed(2) }}s {{ t("endTime") }}:
+          {{ endTime.toFixed(2) }}s {{ t("duration") }}:
+          {{ selectionDuration.toFixed(2) }}s
         </div>
       </div>
     </div>
@@ -79,19 +83,19 @@
               <td
                 class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
               >
-                {{ item.startTime.toFixed(1) }}s
+                {{ item.startTime.toFixed(2) }}s
               </td>
               <td
                 class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
               >
-                {{ item.endTime.toFixed(1) }}s
+                {{ item.endTime.toFixed(2) }}s
               </td>
               <td
                 class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
               >
-                {{ item.duration.toFixed(1) }}s
+                {{ item.duration.toFixed(2) }}s
               </td>
-              <td class="py-2 px-4">
+              <td class="py-2 px-4 whitespace-nowrap">
                 <Btn
                   size="sm"
                   color="primary"
@@ -129,6 +133,7 @@ const isPlaying = ref(false);
 const startTime = ref(0);
 const endTime = ref(0);
 const duration = ref(0);
+const selectionDuration = computed(() => endTime.value - startTime.value);
 const currentFile = ref<File | null>(null);
 let audioFile: File | null = null;
 
@@ -156,12 +161,13 @@ const initWavesurfer = () => {
   // 加载完成后设置持续时间
   wavesurfer.on("ready", () => {
     duration.value = wavesurfer!.getDuration();
-    endTime.value = duration.value;
+    startTime.value = duration.value * 0.2;
+    endTime.value = duration.value * 0.8;
     // 创建初始选区
     regions!.addRegion({
       id: "trim-region",
-      start: duration.value * 0.2,
-      end: duration.value * 0.8,
+      start: startTime.value,
+      end: endTime.value,
       color: "rgba(59, 130, 246, 0.3)",
       drag: true,
       resize: true,
@@ -261,7 +267,7 @@ const trim = async () => {
   let trimmedBlob = new Blob([trimmedAudio], { type: "audio/wav" });
 
   // 添加到历史记录
-  trimHistory.value.push({
+  trimHistory.value.unshift({
     blob: trimmedBlob,
     fileName: audioFile?.name || "untitled",
     startTime: startTime.value,
@@ -270,29 +276,11 @@ const trim = async () => {
     timestamp: Date.now(),
   });
 };
-const audioBufferToWav = (audioBuffer: AudioBuffer): Blob => {
-  // 直接在这里实现音频数据的交织，不再调用单独的方法
-  const channels = audioBuffer.numberOfChannels;
-  const length = audioBuffer.length * channels;
-  const interleaved = new Float32Array(length);
-
-  for (let i = 0; i < audioBuffer.length; i++) {
-    for (let channel = 0; channel < channels; channel++) {
-      interleaved[i * channels + channel] =
-        audioBuffer.getChannelData(channel)[i];
-    }
-  }
-
-  // 将 Float32Array 转换为 Int16Array
-  const samples = new Int16Array(interleaved.length);
-  for (let i = 0; i < interleaved.length; i++) {
-    const s = Math.max(-1, Math.min(1, interleaved[i]));
-    samples[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
-  }
-  const dataView = createWavHeader(interleaved.length, audioBuffer.sampleRate);
-  return new Blob([dataView, samples.buffer], { type: "audio/wav" });
-};
-const createWavHeader = (samples: number, sampleRate: number) => {
+const createWavHeader = (
+  samples: number,
+  sampleRate: number,
+  channels: number
+) => {
   const buffer = new ArrayBuffer(44);
   const view = new DataView(buffer);
 
@@ -306,34 +294,69 @@ const createWavHeader = (samples: number, sampleRate: number) => {
     }
   };
 
-  const channels = 2; // 改回双声道
   const bytesPerSample = 2; // 16位采样
   const blockAlign = channels * bytesPerSample;
   const byteRate = sampleRate * blockAlign;
   const dataSize = samples * bytesPerSample; // 实际数据大小
 
   writeString(view, 0, "RIFF");
-  view.setUint32(4, 36 + dataSize, true); // 文件总大小
+  view.setUint32(4, 36 + dataSize, true);
   writeString(view, 8, "WAVE");
   writeString(view, 12, "fmt ");
   view.setUint32(16, 16, true);
   view.setUint16(20, 1, true);
-  view.setUint16(22, channels, true);
+  view.setUint16(22, channels, true); // 使用实际的声道数
   view.setUint32(24, sampleRate, true);
   view.setUint32(28, byteRate, true);
   view.setUint16(32, blockAlign, true);
   view.setUint16(34, 16, true);
   writeString(view, 36, "data");
-  view.setUint32(40, dataSize, true); // 数据块大小
+  view.setUint32(40, dataSize, true);
 
   return buffer;
+};
+
+const audioBufferToWav = (audioBuffer: AudioBuffer): Blob => {
+  const channels = audioBuffer.numberOfChannels; // 使用实际的声道数
+  const length = audioBuffer.length * channels;
+  const interleaved = new Float32Array(length);
+
+  // 根据实际声道数进行交织
+  if (channels === 1) {
+    // 单声道直接复制
+    const channelData = audioBuffer.getChannelData(0);
+    interleaved.set(channelData);
+  } else {
+    // 多声道交织
+    for (let i = 0; i < audioBuffer.length; i++) {
+      for (let channel = 0; channel < channels; channel++) {
+        interleaved[i * channels + channel] =
+          audioBuffer.getChannelData(channel)[i];
+      }
+    }
+  }
+
+  const samples = new Int16Array(interleaved.length);
+  for (let i = 0; i < interleaved.length; i++) {
+    const s = Math.max(-1, Math.min(1, interleaved[i]));
+    samples[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+  }
+
+  const dataView = createWavHeader(
+    audioBuffer.length,
+    audioBuffer.sampleRate,
+    channels
+  );
+  return new Blob([dataView, samples.buffer], { type: "audio/wav" });
 };
 
 const downloadAudio = (item: TrimHistory) => {
   const url = URL.createObjectURL(item.blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `${item.fileName}_${item.startTime}-${item.endTime}.wav`;
+  a.download = `${item.fileName}_${item.startTime.toFixed(
+    2
+  )}-${item.endTime.toFixed(2)}.wav`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -349,9 +372,9 @@ const zoom = (e: Event) => {
 // 检查浏览器兼容性
 const checkBrowserSupport = () => {
   const requirements = {
-    audioContext: 'AudioContext' in window || 'webkitAudioContext' in window,
-    blob: 'Blob' in window,
-    dataView: 'DataView' in window,
+    audioContext: "AudioContext" in window || "webkitAudioContext" in window,
+    blob: "Blob" in window,
+    dataView: "DataView" in window,
   };
 
   const unsupported = Object.entries(requirements)
@@ -359,7 +382,7 @@ const checkBrowserSupport = () => {
     .map(([name]) => name);
 
   if (unsupported.length > 0) {
-    alert(t('browserNotSupported'));
+    alert(t("browserNotSupported"));
     return false;
   }
   return true;
@@ -404,10 +427,12 @@ en:
   actions: "Actions"
   delete: "Delete"
   browserNotSupported: "Your browser does not support required features. Please upgrade or switch to a modern browser like Chrome, Firefox, or Edge."
+  zoom: "Zoom"
 zh:
   toolName: "音频剪辑器"
   play: "播放"
   pause: "暂停"
+  playRegion: "播放选区"
   trim: "剪辑"
   download: "下载"
   clear: "清空"
@@ -419,4 +444,5 @@ zh:
   actions: "操作"
   delete: "删除"
   browserNotSupported: "您的浏览器不支持所需功能。请升级或更换到 Chrome、Firefox 或 Edge 等现代浏览器。"
+  zoom: "缩放"
 </i18n>
