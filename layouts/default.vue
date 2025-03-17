@@ -5,24 +5,41 @@
     >
       <NuxtLinkLocale to="/">{{ $t("appName") }}</NuxtLinkLocale>
       <div class="flex-grow"></div>
-      <IconBtn
-        class="bar-icon-btn ml-3"
+      <Popover menu>
+        <button>
+          {{ localeProperties.name }}
+          <Caret class="ml-1" />
+        </button>
+        <template #content>
+          <a
+            href="#"
+            v-for="locale in locales"
+            :key="locale.code"
+            @click.prevent.stop="setLocale(locale.code)"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            {{ locale.name }}
+          </a>
+        </template>
+      </Popover>
+      <button
+        class="ml-2"
         :title="$t('toggleColor')"
         @click="
           $colorMode.preference =
-            colorMode.preference === 'dark' ? 'light' : 'dark'
+            $colorMode.preference === 'dark' ? 'light' : 'dark'
         "
-        :path="mdiWhiteBalanceSunny"
-        :size="23"
-      />
-      <IconBtn
-        class="bar-icon-btn ml-3"
-        :title="$t('toggleSidebar')"
+      >
+        <Icon :path="mdiWhiteBalanceSunny" :size="23" />
+      </button>
+      <button
         v-if="sm"
+        class="ml-2"
+        :title="$t('toggleSidebar')"
         @click="sidebarVisible = !sidebarVisible"
-        :path="mdiMenu"
-        :size="23"
-      />
+      >
+        <Icon :path="mdiMenu" :size="23" />
+      </button>
     </div>
     <Transition name="main-sidebar-slide-fade">
       <div
@@ -51,23 +68,16 @@
             <NuxtLinkLocale to="/about" class="main-menu-item">{{
               $t("About")
             }}</NuxtLinkLocale> -->
-            <a
-              class="main-menu-item cursor-pointer select-none"
-              @click="$colorMode.preference = colorModeInfo.next"
-            >
-              <client-only>{{ colorModeInfo.curText }}</client-only>
-              <Icon :path="mdiWhiteBalanceSunny" />
-            </a>
             <NuxtLink
-              :to="$localePath('/', i18n.locale.value === 'en' ? 'zh' : 'en')"
+              :to="$localePath('/', locale.value === 'en' ? 'zh' : 'en')"
               class="main-menu-item"
-              >{{ i18n.locale.value === "en" ? "中文" : "English" }}</NuxtLink
+              >{{ locale.value === "en" ? "中文" : "English" }}</NuxtLink
             >
           </div>
         </div>
       </div>
     </Transition>
-    <div class="main-right pt-12" :class="{ 'ml-72': sidebarVisible }">
+    <div class="main-right pt-12" :class="{ 'ml-72': !sm && sidebarVisible }">
       <div class="main-body px-4 max-w-5xl">
         <!-- alert -->
         <Alert class="mt-2">{{ $t("privateNotice") }}</Alert>
@@ -81,12 +91,18 @@
 </template>
 
 <script setup lang="ts">
-import { mdiMenu, mdiClose, mdiWhiteBalanceSunny } from "@mdi/js";
-const i18n = useI18n();
+import {
+  mdiMenu,
+  mdiClose,
+  mdiWhiteBalanceSunny,
+  mdiChevronDown,
+} from "@mdi/js";
+
+const { locale, locales, setLocale, localeProperties } = useI18n();
 
 useHead({
   htmlAttrs: {
-    lang: i18n.locale,
+    lang: locale,
   },
 });
 
@@ -118,29 +134,11 @@ onBeforeMount(() => {
   updateWindowSize();
   window.addEventListener("resize", updateWindowSize);
 });
+
+// 点击外部关闭下拉框
 onMounted(() => {});
 onUnmounted(() => {
   window.removeEventListener("resize", updateWindowSize);
-});
-
-// color mode
-const mapping = {
-  system: "autoColor",
-  dark: "darkColor",
-  light: "lightColor",
-};
-const colorMode = useColorMode();
-const colorModeInfo = computed(() => {
-  const cur = colorMode.preference;
-  // @ts-ignore
-  const curText = i18n.t(mapping[cur]);
-  const keys = Object.keys(mapping);
-  let i = keys.indexOf(cur);
-  const next = keys[i + 1] || keys[0];
-  return {
-    curText,
-    next,
-  };
 });
 </script>
 
@@ -150,6 +148,9 @@ const colorModeInfo = computed(() => {
 }
 
 .main-bar {
+  button{
+    --at-apply: flex items-center px-2 h-10 rounded hover:bg-gray-100 dark:hover:bg-gray-700;
+  }
 }
 .bar-icon-btn {
   // position: relative;
