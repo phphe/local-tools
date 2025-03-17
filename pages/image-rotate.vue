@@ -11,7 +11,9 @@
           ({{ imageSize.width }}x{{ imageSize.height }})
         </span>
       </h2>
-      <div class="mt-4">
+      <div
+        class="mt-4 w-[310px] h-[310px] p-[10px] rounded flex items-center justify-center border border-gray-300 dark:border-gray-700"
+      >
         <img
           ref="imageRef"
           :src="imageUrl"
