@@ -3,6 +3,7 @@ export default defineI18nConfig(() => ({
   messages: {
     zh: {
       appName: "本地工具箱",
+      htmlTitleTpl: "{title} - 本地处理 无需上传",
       Home: "首页",
       About: "关于",
       notFound: "😭内容未找到",
@@ -17,6 +18,7 @@ export default defineI18nConfig(() => ({
     },
     en: {
       appName: "Local Tools",
+      htmlTitleTpl: "{title} - Local Processing, Zero Upload",
       Home: "Home",
       About: "About",
       notFound: "😭Content not found",

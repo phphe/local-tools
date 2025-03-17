@@ -128,6 +128,10 @@ const { t } = useI18n({
   useScope: "local",
 });
 
+useHead({
+  title: t("toolName"),
+});
+
 const audioSrc = ref("");
 const isPlaying = ref(false);
 const startTime = ref(0);

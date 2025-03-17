@@ -99,7 +99,7 @@
 <script setup lang="ts">
 import { mdiMenu, mdiClose, mdiWhiteBalanceSunny, mdiGithub } from "@mdi/js";
 
-const { locale, locales, setLocale, localeProperties } = useI18n();
+const { locale, locales, setLocale, localeProperties, t } = useI18n();
 
 useHead({
   htmlAttrs: {
@@ -112,11 +112,11 @@ const sm = computed(() => windowSize.value.width < 760);
 const year = new Date().getFullYear();
 
 //
-// useHead({
-//   titleTemplate: (title) => {
-//     return !title || title === appName ? appName : `${title} - ${appName}`;
-//   },
-// });
+useHead({
+  titleTemplate: (title) => {
+    return t("htmlTitleTpl", { title });
+  },
+});
 
 //
 const windowSize = ref({
