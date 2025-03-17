@@ -1,7 +1,7 @@
 <template>
   <div class="default-layout">
     <div
-      class="main-bar fixed w-full top-0 left-0 px-4 h-12 gap-1 border-b bg-white dark:bg-gray-800 dark:border-gray-700 flex items-center"
+      class="main-nav fixed w-full top-0 left-0 px-4 h-12 gap-1 border-b bg-white dark:bg-gray-800 dark:border-gray-700 flex items-center z-1"
     >
       <NuxtLinkLocale to="/">{{ $t("appName") }}</NuxtLinkLocale>
       <div class="flex-grow"></div>
@@ -148,7 +148,7 @@ onUnmounted(() => {
   font-family: "Open Sans";
 }
 
-.main-bar {
+.main-nav {
   button, a{
     --at-apply: flex items-center px-2 h-10 rounded hover:bg-gray-100 dark:hover:bg-gray-700;
   }
