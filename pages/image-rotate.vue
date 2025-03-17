@@ -36,7 +36,7 @@
     </div>
     <!-- 历史记录 -->
     <div v-if="rotateHistory.length" class="mt-6">
-      <h2 class="text-lg mb-2">{{ t("rotateHistory") }}</h2>
+      <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
         <table
           class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
@@ -225,7 +225,7 @@ en:
   rotateRight: "Rotate Right"
   angle: "Angle"
   save: "Save"
-  rotateHistory: "Rotate History"
+  outputFiles: "Output Files"
   preview: "Preview"
   fileName: "File Name"
   actions: "Actions"
@@ -237,7 +237,7 @@ zh:
   rotateRight: "向右旋转"
   angle: "角度"
   save: "保存"
-  rotateHistory: "旋转历史"
+  outputFiles: "输出文件"
   preview: "预览"
   fileName: "文件名"
   actions: "操作"

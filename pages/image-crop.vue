@@ -39,7 +39,7 @@
     </div>
     <!-- 裁剪历史 -->
     <div v-if="cropHistory.length" class="mt-6" ref="historyRef">
-      <h2 class="text-lg mb-2">{{ t("cropHistory") }}</h2>
+      <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
         <table
           class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
@@ -305,7 +305,7 @@ en:
   preview: "Preview"
   toolName: "Image Cropper"
   crop: "Crop"
-  cropHistory: "Crop History"
+  outputFiles: "Output Files"
   fileName: "File Name"
   size: "Size"
   actions: "Actions"
@@ -316,7 +316,7 @@ zh:
   preview: "预览"
   toolName: "图片裁剪"
   crop: "裁剪"
-  cropHistory: "裁剪历史"
+  outputFiles: "输出文件"
   fileName: "文件名"
   size: "尺寸"
   actions: "操作"

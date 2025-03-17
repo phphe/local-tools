@@ -39,7 +39,7 @@
     </div>
     <!-- 添加历史记录表格 -->
     <div v-if="trimHistory.length" class="mt-6">
-      <h2 class="text-lg mb-2">{{ t("trimHistory") }}</h2>
+      <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
         <table
           class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
@@ -424,7 +424,7 @@ en:
   clear: "Clear"
   startTime: "Start Time"
   endTime: "End Time"
-  trimHistory: "Trim History"
+  outputFiles: "Output Files"
   fileName: "File Name"
   duration: "Duration"
   actions: "Actions"
@@ -440,7 +440,7 @@ zh:
   clear: "清空"
   startTime: "开始时间"
   endTime: "结束时间"
-  trimHistory: "剪辑历史"
+  outputFiles: "输出文件"
   fileName: "文件名"
   duration: "时长"
   actions: "操作"

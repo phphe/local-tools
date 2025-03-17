@@ -29,7 +29,10 @@
           <option value="image/gif">GIF</option>
         </select>
         <!-- 添加质量选项 -->
-        <div v-if="['image/jpeg', 'image/webp'].includes(targetFormat)" class="flex items-center gap-1">
+        <div
+          v-if="['image/jpeg', 'image/webp'].includes(targetFormat)"
+          class="flex items-center gap-1"
+        >
           <span>{{ t("quality") }}:</span>
           <input
             type="number"
@@ -44,7 +47,7 @@
     </div>
     <!-- 转换历史 -->
     <div v-if="convertHistory.length" class="mt-6">
-      <h2 class="text-lg mb-2">{{ t("convertHistory") }}</h2>
+      <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
         <table
           class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
@@ -173,12 +176,12 @@ const convert = async () => {
 
   const blob = await new Promise<Blob>((resolve) => {
     const options: any = {};
-    
+
     // 设置质量选项
-    if (['image/jpeg', 'image/webp'].includes(targetFormat.value)) {
+    if (["image/jpeg", "image/webp"].includes(targetFormat.value)) {
       options.quality = quality.value / 100;
     }
-    
+
     canvas.toBlob((blob) => resolve(blob!), targetFormat.value, options);
   });
 
@@ -225,7 +228,7 @@ onMounted(() => {
 en:
   toolName: "Image Format Converter"
   convert: "Convert"
-  convertHistory: "Convert History"
+  outputFiles: "Output Files"
   preview: "Preview"
   fileName: "File Name"
   format: "Format"
@@ -236,7 +239,7 @@ en:
 zh:
   toolName: "图片格式转换"
   convert: "转换"
-  convertHistory: "转换历史"
+  outputFiles: "输出文件"
   preview: "预览"
   fileName: "文件名"
   format: "格式"
