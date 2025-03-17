@@ -39,6 +39,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appName,
+      githubRepo: "phphe/local-tools",
     },
   },
 });

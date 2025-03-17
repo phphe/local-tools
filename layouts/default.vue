@@ -1,12 +1,20 @@
 <template>
   <div class="default-layout">
     <div
-      class="main-bar fixed w-full top-0 left-0 px-4 h-12 border-b bg-white dark:bg-gray-800 dark:border-gray-700 flex items-center"
+      class="main-bar fixed w-full top-0 left-0 px-4 h-12 gap-1 border-b bg-white dark:bg-gray-800 dark:border-gray-700 flex items-center"
     >
       <NuxtLinkLocale to="/">{{ $t("appName") }}</NuxtLinkLocale>
       <div class="flex-grow"></div>
+      <a
+        v-if="$config.public.githubRepo"
+        title="GitHub"
+        target="_blank"
+        :href="'https://github.com/' + $config.public.githubRepo"
+      >
+        <Icon :path="mdiGithub" :size="23" />
+      </a>
       <Popover menu>
-        <button>
+        <button :title="$t('language')">
           {{ localeProperties.name }}
           <Caret class="ml-1" />
         </button>
@@ -23,7 +31,6 @@
         </template>
       </Popover>
       <button
-        class="ml-2"
         :title="$t('toggleColor')"
         @click="
           $colorMode.preference =
@@ -34,7 +41,6 @@
       </button>
       <button
         v-if="sm"
-        class="ml-2"
         :title="$t('toggleSidebar')"
         @click="sidebarVisible = !sidebarVisible"
       >
@@ -91,12 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  mdiMenu,
-  mdiClose,
-  mdiWhiteBalanceSunny,
-  mdiChevronDown,
-} from "@mdi/js";
+import { mdiMenu, mdiClose, mdiWhiteBalanceSunny, mdiGithub } from "@mdi/js";
 
 const { locale, locales, setLocale, localeProperties } = useI18n();
 
@@ -148,7 +149,7 @@ onUnmounted(() => {
 }
 
 .main-bar {
-  button{
+  button, a{
     --at-apply: flex items-center px-2 h-10 rounded hover:bg-gray-100 dark:hover:bg-gray-700;
   }
 }
@@ -173,7 +174,7 @@ onUnmounted(() => {
 
 .main-body {
   min-height: 750px;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 160px);
 }
 
 .dark {

@@ -11,6 +11,7 @@ export default defineI18nConfig(() => ({
       darkColor: "暗色",
       toggleColor: "切换颜色",
       toggleSidebar: "切换侧边栏",
+      language: "语言",
       privateNotice:
         "📢 您的文件将仅在浏览器本地进行处理，不会上传至任何服务器。",
     },
@@ -22,8 +23,9 @@ export default defineI18nConfig(() => ({
       autoColor: "Auto",
       lightColor: "Light",
       darkColor: "Dark",
-      toggleColor: "切换颜色",
+      toggleColor: "Toggle Color",
       toggleSidebar: "Toggle Sidebar",
+      language: "Language",
       privateNotice:
         "📢 Your files will be processed locally in your browser only and will not be uploaded to any servers.",
     },
