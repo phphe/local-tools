@@ -384,7 +384,6 @@ const checkBrowserSupport = () => {
   const unsupported = Object.entries(requirements)
     .filter(([, supported]) => !supported)
     .map(([name]) => name);
-
   if (unsupported.length > 0) {
     alert(t("browserNotSupported"));
     return false;
@@ -430,7 +429,6 @@ en:
   duration: "Duration"
   actions: "Actions"
   delete: "Delete"
-  browserNotSupported: "Your browser does not support required features. Please upgrade or switch to a modern browser like Chrome, Firefox, or Edge."
   zoom: "Zoom"
 zh:
   toolName: "音频剪辑器"
@@ -447,6 +445,5 @@ zh:
   duration: "时长"
   actions: "操作"
   delete: "删除"
-  browserNotSupported: "您的浏览器不支持所需功能。请升级或更换到 Chrome、Firefox 或 Edge 等现代浏览器。"
   zoom: "缩放"
 </i18n>

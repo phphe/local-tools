@@ -28,6 +28,7 @@
     "@unhead/vue": "^2.0.0-rc.8",
     "@unocss/nuxt": "66.1.0-beta.5",
     "@unocss/reset": "66.1.0-beta.5",
+    "cropperjs": "^1.5.13",
     "nuxt": "^3.16.0",
     "nuxt-gtag": "^3.0.2",
     "sass-embedded": "^1.85.1",

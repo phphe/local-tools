@@ -15,6 +15,8 @@ export default defineI18nConfig(() => ({
       language: "语言",
       privateNotice:
         "📢 您的文件将仅在浏览器本地进行处理，不会上传至任何服务器。",
+      browserNotSupported:
+        "您的浏览器不支持所需功能。请升级或更换到 Chrome、Firefox 或 Edge 等现代浏览器。",
     },
     en: {
       appName: "Local Tools",
@@ -30,6 +32,8 @@ export default defineI18nConfig(() => ({
       language: "Language",
       privateNotice:
         "📢 Your files will be processed locally in your browser only and will not be uploaded to any servers.",
+      browserNotSupported:
+        "Your browser does not support required features. Please upgrade or switch to a modern browser like Chrome, Firefox, or Edge.",
     },
   },
 }));
