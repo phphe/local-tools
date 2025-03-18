@@ -36,13 +36,7 @@
       <div class="mt-4 flex items-center gap-2 flex-wrap">
         <div class="flex items-center gap-2">
           <span>{{ t("radius") }}:</span>
-          <input
-            type="range"
-            v-model="radius"
-            min="0"
-            max="150"
-            class="w-32"
-          />
+          <input type="range" v-model="radius" min="0" max="150" class="w-32" />
           <input
             type="number"
             v-model="radius"
@@ -59,38 +53,64 @@
     <div v-if="roundHistory.length" class="mt-6">
       <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
-        <table class="min-w-full border-collapse border border-gray-300 dark:border-gray-700">
+        <table
+          class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
+        >
           <thead>
             <tr class="border-b border-gray-300 dark:border-gray-700">
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("preview") }}
               </th>
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("fileName") }}
               </th>
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("radius") }}
               </th>
               <th class="py-2 px-4 text-left">{{ t("actions") }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in roundHistory" :key="item.timestamp" 
-              class="border-b border-gray-300 dark:border-gray-700">
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-700">
+            <tr
+              v-for="(item, index) in roundHistory"
+              :key="item.timestamp"
+              class="border-b border-gray-300 dark:border-gray-700"
+            >
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-700"
+              >
                 <img :src="item.thumb" class="w-25 h-auto object-contain" />
               </td>
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700">
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ item.fileName }}
               </td>
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700">
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ item.radius }}px
               </td>
               <td class="py-2 px-4">
-                <Btn size="sm" color="primary" class="mr-2" @click="downloadImage(item)">
+                <Btn
+                  size="sm"
+                  color="primary"
+                  class="mr-2"
+                  @click="downloadImage(item)"
+                >
                   {{ t("download") }}
                 </Btn>
-                <Btn size="sm" color="danger" @click="roundHistory.splice(index, 1)">
+                <Btn
+                  size="sm"
+                  color="danger"
+                  @click="roundHistory.splice(index, 1)"
+                >
                   {{ t("delete") }}
                 </Btn>
               </td>
@@ -103,9 +123,8 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  keepalive: true
-});
+// check browser support for image
+useCheckBrowserSupportForImage();
 
 const { t } = useI18n({
   useScope: "local",
@@ -164,7 +183,12 @@ const saveRound = async () => {
   ctx.lineTo(canvas.width - radius.value, 0);
   ctx.quadraticCurveTo(canvas.width, 0, canvas.width, radius.value);
   ctx.lineTo(canvas.width, canvas.height - radius.value);
-  ctx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - radius.value, canvas.height);
+  ctx.quadraticCurveTo(
+    canvas.width,
+    canvas.height,
+    canvas.width - radius.value,
+    canvas.height
+  );
   ctx.lineTo(radius.value, canvas.height);
   ctx.quadraticCurveTo(0, canvas.height, 0, canvas.height - radius.value);
   ctx.lineTo(0, radius.value);
@@ -211,7 +235,7 @@ onBeforeUnmount(() => {
   if (imageUrl.value) {
     URL.revokeObjectURL(imageUrl.value);
   }
-  roundHistory.value.forEach(item => {
+  roundHistory.value.forEach((item) => {
     URL.revokeObjectURL(item.thumb);
   });
 });

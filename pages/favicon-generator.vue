@@ -50,7 +50,9 @@
 import Cropper from "cropperjs";
 import JSZip from "jszip";
 import "cropperjs/dist/cropper.css";
-import { encode } from "ico-endec";
+
+// check browser support for image
+useCheckBrowserSupportForImage();
 
 const { t } = useI18n({
   useScope: "local",

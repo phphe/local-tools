@@ -30,39 +30,63 @@
       </div>
       <div class="mt-4 flex items-center gap-2 flex-wrap">
         <Btn size="sm" @click="invertColors">{{ t("invert") }}</Btn>
-        <Btn size="sm" @click="saveInvert" v-if="previewUrl">{{ t("save") }}</Btn>
+        <Btn size="sm" @click="saveInvert" v-if="previewUrl">{{
+          t("save")
+        }}</Btn>
       </div>
     </div>
     <!-- 历史记录 -->
     <div v-if="invertHistory.length" class="mt-6">
       <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
-        <table class="min-w-full border-collapse border border-gray-300 dark:border-gray-700">
+        <table
+          class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
+        >
           <thead>
             <tr class="border-b border-gray-300 dark:border-gray-700">
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("preview") }}
               </th>
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("fileName") }}
               </th>
               <th class="py-2 px-4 text-left">{{ t("actions") }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in invertHistory" :key="item.timestamp" 
-              class="border-b border-gray-300 dark:border-gray-700">
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700">
+            <tr
+              v-for="(item, index) in invertHistory"
+              :key="item.timestamp"
+              class="border-b border-gray-300 dark:border-gray-700"
+            >
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
+              >
                 <img :src="item.thumb" class="w-25 h-auto object-contain" />
               </td>
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700">
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ item.fileName }}
               </td>
               <td class="py-2 px-4">
-                <Btn size="sm" color="primary" class="mr-2" @click="downloadImage(item)">
+                <Btn
+                  size="sm"
+                  color="primary"
+                  class="mr-2"
+                  @click="downloadImage(item)"
+                >
                   {{ t("download") }}
                 </Btn>
-                <Btn size="sm" color="danger" @click="invertHistory.splice(index, 1)">
+                <Btn
+                  size="sm"
+                  color="danger"
+                  @click="invertHistory.splice(index, 1)"
+                >
                   {{ t("delete") }}
                 </Btn>
               </td>
@@ -75,9 +99,8 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  keepalive: true
-});
+// check browser support for image
+useCheckBrowserSupportForImage();
 
 const { t } = useI18n({
   useScope: "local",
@@ -139,7 +162,7 @@ const invertColors = async () => {
 
   // 反转颜色
   for (let i = 0; i < data.length; i += 4) {
-    data[i] = 255 - data[i];         // 红色
+    data[i] = 255 - data[i]; // 红色
     data[i + 1] = 255 - data[i + 1]; // 绿色
     data[i + 2] = 255 - data[i + 2]; // 蓝色
     // 保持透明度不变
@@ -191,7 +214,7 @@ onBeforeUnmount(() => {
   if (previewUrl.value) {
     URL.revokeObjectURL(previewUrl.value);
   }
-  invertHistory.value.forEach(item => {
+  invertHistory.value.forEach((item) => {
     URL.revokeObjectURL(item.thumb);
   });
 });

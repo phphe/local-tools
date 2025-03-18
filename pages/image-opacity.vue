@@ -59,38 +59,64 @@
     <div v-if="opacityHistory.length" class="mt-6">
       <h2 class="text-lg mb-2">{{ t("outputFiles") }}</h2>
       <div class="overflow-x-auto">
-        <table class="min-w-full border-collapse border border-gray-300 dark:border-gray-700">
+        <table
+          class="min-w-full border-collapse border border-gray-300 dark:border-gray-700"
+        >
           <thead>
             <tr class="border-b border-gray-300 dark:border-gray-700">
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("preview") }}
               </th>
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("fileName") }}
               </th>
-              <th class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700">
+              <th
+                class="py-2 px-4 text-left border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ t("opacity") }}
               </th>
               <th class="py-2 px-4 text-left">{{ t("actions") }}</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in opacityHistory" :key="item.timestamp" 
-              class="border-b border-gray-300 dark:border-gray-700">
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-700">
+            <tr
+              v-for="(item, index) in opacityHistory"
+              :key="item.timestamp"
+              class="border-b border-gray-300 dark:border-gray-700"
+            >
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-gray-700"
+              >
                 <img :src="item.thumb" class="w-25 h-auto object-contain" />
               </td>
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700">
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ item.fileName }}
               </td>
-              <td class="py-2 px-4 border-r border-gray-300 dark:border-gray-700">
+              <td
+                class="py-2 px-4 border-r border-gray-300 dark:border-gray-700"
+              >
                 {{ item.opacity }}%
               </td>
               <td class="py-2 px-4">
-                <Btn size="sm" color="primary" class="mr-2" @click="downloadImage(item)">
+                <Btn
+                  size="sm"
+                  color="primary"
+                  class="mr-2"
+                  @click="downloadImage(item)"
+                >
                   {{ t("download") }}
                 </Btn>
-                <Btn size="sm" color="danger" @click="opacityHistory.splice(index, 1)">
+                <Btn
+                  size="sm"
+                  color="danger"
+                  @click="opacityHistory.splice(index, 1)"
+                >
                   {{ t("delete") }}
                 </Btn>
               </td>
@@ -103,9 +129,8 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  keepalive: true
-});
+// check browser support for image
+useCheckBrowserSupportForImage();
 
 const { t } = useI18n({
   useScope: "local",
@@ -193,7 +218,7 @@ onBeforeUnmount(() => {
   if (imageUrl.value) {
     URL.revokeObjectURL(imageUrl.value);
   }
-  opacityHistory.value.forEach(item => {
+  opacityHistory.value.forEach((item) => {
     URL.revokeObjectURL(item.thumb);
   });
 });

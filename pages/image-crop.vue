@@ -109,6 +109,9 @@
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.css";
 
+// check browser support for image
+useCheckBrowserSupportForImage();
+
 const { t } = useI18n({
   useScope: "local",
 });
@@ -281,23 +284,6 @@ const backupWidthHeight = () => {
     cropper!.setData(data);
   };
 };
-
-// 在 script setup 中添加检查函数
-const checkBrowserSupport = () => {
-  const requirements = {
-    canvas: !!document.createElement("canvas").getContext,
-    blob: "Blob" in window,
-  };
-
-  return Object.values(requirements).every((supported) => supported);
-};
-
-// 在组件挂载时检查
-onMounted(() => {
-  if (!checkBrowserSupport()) {
-    alert(t("browserNotSupported"));
-  }
-});
 </script>
 
 <i18n lang="yaml">

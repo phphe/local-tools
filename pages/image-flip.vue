@@ -101,9 +101,8 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  keepalive: true,
-});
+// check browser support for image
+useCheckBrowserSupportForImage();
 
 const { t } = useI18n({
   useScope: "local",

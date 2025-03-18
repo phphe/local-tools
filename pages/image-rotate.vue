@@ -110,6 +110,9 @@
 </template>
 
 <script setup lang="ts">
+// check browser support for image
+useCheckBrowserSupportForImage();
+
 const { t } = useI18n({
   useScope: "local",
 });
@@ -203,21 +206,6 @@ const downloadImage = (item: RotateHistory) => {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 };
-
-const checkBrowserSupport = () => {
-  const requirements = {
-    canvas: !!document.createElement("canvas").getContext,
-    blob: "Blob" in window,
-  };
-
-  return Object.values(requirements).every((supported) => supported);
-};
-
-onMounted(() => {
-  if (!checkBrowserSupport()) {
-    alert(t("browserNotSupported"));
-  }
-});
 </script>
 
 <i18n lang="yaml">
