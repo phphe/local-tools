@@ -29,6 +29,7 @@
     "@unocss/nuxt": "66.1.0-beta.5",
     "@unocss/reset": "66.1.0-beta.5",
     "cropperjs": "^1.5.13",
+    "jszip": "^3.10.1",
     "nuxt": "^3.16.0",
     "nuxt-gtag": "^3.0.2",
     "sass-embedded": "^1.85.1",
