@@ -128,8 +128,9 @@ const { t } = useI18n({
   useScope: "local",
 });
 
-useHead({
+useSeoMeta({
   title: t("toolName"),
+  description: t("description"),
 });
 
 const audioSrc = ref("");

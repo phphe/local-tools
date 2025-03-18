@@ -4,6 +4,7 @@ export default defineI18nConfig(() => ({
     zh: {
       appName: "本地工具箱",
       htmlTitleTpl: "{title} - 本地处理 无需上传",
+      siteDescription: "一系列常用工具，在线免费使用，无需上传，无需安装，无需注册。",
       Home: "首页",
       About: "关于",
       notFound: "😭内容未找到",
@@ -19,6 +20,7 @@ export default defineI18nConfig(() => ({
     en: {
       appName: "Local Tools",
       htmlTitleTpl: "{title} - Local Processing, Zero Upload",
+      siteDescription: "A collection of useful tools, online free use, no upload, no installation, no registration.",
       Home: "Home",
       About: "About",
       notFound: "😭Content not found",
@@ -34,6 +36,7 @@ export default defineI18nConfig(() => ({
     es: {
       appName: "Herramientas Locales",
       htmlTitleTpl: "{title} - Procesamiento Local, Sin Subidas",
+      siteDescription: "Una colección de herramientas útiles, en línea sin subir, sin instalación, sin registro.",
       Home: "Inicio",
       About: "Acerca de",
       notFound: "😭Contenido no encontrado",
@@ -49,6 +52,7 @@ export default defineI18nConfig(() => ({
     pt: {
       appName: "Ferramentas Locais",
       htmlTitleTpl: "{title} - Processamento Local, Sem Upload",
+      siteDescription: "Uma coleção de ferramentas úteis, em linha sem upload, sem instalação, sem registro.",
       Home: "Início",
       About: "Sobre",
       notFound: "😭Conteúdo não encontrado",
@@ -64,6 +68,7 @@ export default defineI18nConfig(() => ({
     id: {
       appName: "Alat Lokal",
       htmlTitleTpl: "{title} - Pemrosesan Lokal, Tanpa Unggah",
+      siteDescription: "Kumpulan alat bantu yang berguna, online tanpa upload, tanpa instalasi, tanpa registrasi.",
       Home: "Beranda",
       About: "Tentang",
       notFound: "😭Konten tidak ditemukan",
@@ -79,6 +84,7 @@ export default defineI18nConfig(() => ({
     fr: {
       appName: "Outils Locaux",
       htmlTitleTpl: "{title} - Traitement Local, Sans Téléchargement",
+      siteDescription: "Une collection d'outils utiles, en ligne sans téléchargement, sans installation, sans inscription.",
       Home: "Accueil",
       About: "À propos",
       notFound: "😭Contenu non trouvé",
@@ -94,6 +100,7 @@ export default defineI18nConfig(() => ({
     ja: {
       appName: "ローカルツール",
       htmlTitleTpl: "{title} - ローカル処理、アップロード不要",
+      siteDescription: "便利なツールのコレクション。オンラインで無料で使用でき、アップロードやインストール、登録などは不要です。",
       Home: "ホーム",
       About: "概要",
       notFound: "😭コンテンツが見つかりません",
@@ -109,6 +116,7 @@ export default defineI18nConfig(() => ({
     ru: {
       appName: "Локальные Инструменты",
       htmlTitleTpl: "{title} - Локальная Обработка, Без Загрузки",
+      siteDescription: "Коллекция полезных инструментов, онлайн без загрузки, без установки, без регистрации.",
       Home: "Главная",
       About: "О нас",
       notFound: "😭Содержимое не найдено",
@@ -124,6 +132,7 @@ export default defineI18nConfig(() => ({
     de: {
       appName: "Lokale Werkzeuge",
       htmlTitleTpl: "{title} - Lokale Verarbeitung, Kein Upload",
+      siteDescription: "Eine Sammlung von nützlichen Werkzeugen, online ohne Upload, ohne Installation, ohne Registrierung.",
       Home: "Startseite",
       About: "Über",
       notFound: "😭Inhalt nicht gefunden",

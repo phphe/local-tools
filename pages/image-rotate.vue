@@ -117,8 +117,9 @@ const { t } = useI18n({
   useScope: "local",
 });
 
-useHead({
+useSeoMeta({
   title: t("toolName"),
+  description: t("description"),
 });
 
 const currentFile = ref<File | null>(null);
