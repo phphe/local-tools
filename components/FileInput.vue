@@ -11,6 +11,7 @@
       class="hidden"
       :accept="accept"
       @change="handleChange"
+      :multiple="!!multiple"
     />
     <div class="space-y-2">
       <div class="text-gray-600 dark:text-gray-400">
@@ -26,10 +27,11 @@
 <script setup lang="ts">
 const props = defineProps<{
   accept?: string;
+  multiple?: boolean;
 }>();
 
 const emit = defineEmits<{
-  (e: "change", file: File): void;
+  (e: "change", file: File, files: FileList, event: Event): void;
 }>();
 
 const { t } = useI18n({
@@ -42,19 +44,21 @@ const acceptList = computed(
 );
 
 const handleChange = (e: Event) => {
-  const file = (e.target as HTMLInputElement).files?.[0];
+  const files = (e.target as HTMLInputElement).files;
+  const file = files?.[0];
   if (file) {
-    emit("change", file);
+    emit("change", file, files, e);
   }
 };
 
 const handleDrop = (e: DragEvent) => {
-  const file = e.dataTransfer?.files[0];
+  const files = e.dataTransfer?.files;
+  const file = files?.[0];
   if (file) {
     if (acceptList.value.length && !acceptList.value.includes(file.type)) {
       return;
     }
-    emit("change", file);
+    emit("change", file, files, e);
   }
 };
 </script>
