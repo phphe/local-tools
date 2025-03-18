@@ -70,4 +70,25 @@ en:
 zh:
   dragDrop: "拖拽文件到这里或点击选择"
   supportedFormats: "支持的格式"
+es:
+  dragDrop: "Arrastra y suelta archivos aquí o haz clic para seleccionar"
+  supportedFormats: "Formatos soportados"
+pt:
+  dragDrop: "Arraste e solte arquivos aqui ou clique para selecionar"
+  supportedFormats: "Formatos suportados"
+id:
+  dragDrop: "Seret dan lepaskan file di sini atau klik untuk memilih"
+  supportedFormats: "Format yang didukung"
+fr:
+  dragDrop: "Glissez et déposez les fichiers ici ou cliquez pour sélectionner"
+  supportedFormats: "Formats pris en charge"
+ja:
+  dragDrop: "ファイルをドラッグ＆ドロップまたはクリックして選択"
+  supportedFormats: "対応フォーマット"
+ru:
+  dragDrop: "Перетащите файлы сюда или нажмите для выбора"
+  supportedFormats: "Поддерживаемые форматы"
+de:
+  dragDrop: "Dateien hierher ziehen oder klicken zum Auswählen"
+  supportedFormats: "Unterstützte Formate"
 </i18n>

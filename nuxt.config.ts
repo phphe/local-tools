@@ -31,6 +31,34 @@ export default defineNuxtConfig({
         code: "zh",
         name: "简体中文",
       },
+      {
+        code: "es",
+        name: "Español",
+      },
+      {
+        code: "pt",
+        name: "Português",
+      },
+      {
+        code: "id",
+        name: "Bahasa Indonesia",
+      },
+      {
+        code: "fr",
+        name: "Français",
+      },
+      {
+        code: "ja",
+        name: "日本語",
+      },
+      {
+        code: "ru",
+        name: "Русский",
+      },
+      {
+        code: "de",
+        name: "Deutsch",
+      },
     ],
     defaultLocale: "en", // default locale of your project for Nuxt pages and routings
     strategy: "prefix_except_default",

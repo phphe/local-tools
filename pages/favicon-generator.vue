@@ -333,10 +333,47 @@ onUnmounted(() => {
 <i18n lang="yaml">
 en:
   toolName: "Favicon Generator"
+  description: "Online free conversion of images to favicon.ico, no upload and registration required."
   selectTargets: "Select Output Targets"
   generate: "Generate"
 zh:
   toolName: "Favicon生成器"
+  description: "在线免费转换图片为favicon.ico，无需上传和注册。"
   selectTargets: "选择输出目标"
   generate: "生成"
+es:
+  toolName: "Generador de Favicon"
+  description: "Generador de favicon.ico en línea sin necesidad de subir ni registrarse."
+  selectTargets: "Seleccionar Objetivos de Salida"
+  generate: "Generar"
+pt:
+  toolName: "Gerador de Favicon"
+  description: "Gerador de favicon.ico em linha sem necessidade de upload ou registro."
+  selectTargets: "Selecionar Alvos de Saída"
+  generate: "Gerar"
+id:
+  toolName: "Pembuat Favicon"
+  description: "Generator favicon.ico secara online tanpa perlu mengunggah atau mendaftar."
+  selectTargets: "Pilih Target Output"
+  generate: "Buat"
+fr:
+  toolName: "Générateur de Favicon"
+  description: "Générateur de favicon.ico en ligne sans nécessiter de téléchargement ou d'inscription."
+  selectTargets: "Sélectionner les Cibles de Sortie"
+  generate: "Générer"
+ja:
+  toolName: "ファビコンジェネレーター"
+  description: "画像を favicon.ico に変換するためのオンラインジェネレーター。アップロードや登録は必要ありません。"
+  selectTargets: "出力対象を選択"
+  generate: "生成"
+ru:
+  toolName: "Генератор Favicon"
+  description: "Онлайн-генератор favicon.ico, без необходимости загружать или регистрироваться."
+  selectTargets: "Выберите Цели Вывода"
+  generate: "Создать"
+de:
+  toolName: "Favicon-Generator"
+  description: "Online-Favicon-Generator ohne Upload und Registrierung."
+  selectTargets: "Ausgabeziele Auswählen"
+  generate: "Generieren"
 </i18n>
