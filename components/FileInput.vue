@@ -69,6 +69,10 @@ const handleChange = (e: Event) => {
   const files = (e.target as HTMLInputElement).files;
   const file = files?.[0];
   if (file) {
+    if (Array.from(files).some((f) => !canAccept(f.type))) {
+      alert(t("unsupportedFormat"));
+      return;
+    }
     emit("change", file, files, e);
   }
 };
@@ -77,7 +81,7 @@ const handleDrop = (e: DragEvent) => {
   const files = e.dataTransfer?.files;
   const file = files?.[0];
   if (file) {
-    if (!canAccept(file.type)) {
+    if (Array.from(files).some((f) => !canAccept(f.type))) {
       alert(t("unsupportedFormat"));
       return;
     }
