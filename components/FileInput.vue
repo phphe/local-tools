@@ -18,7 +18,7 @@
         <slot>{{ t("dragDrop") }}</slot>
       </div>
       <div class="text-sm text-gray-500 dark:text-gray-500">
-        {{ t("supportedFormats") }}: {{ acceptList.join(", ") }}
+        {{ t("supportedFormats") }}: {{ acceptDescription ? acceptDescription : acceptList.join(", ") }}
       </div>
     </div>
   </div>
@@ -31,6 +31,11 @@ const props = defineProps<{
    * For example, "image/*" will accept all image files.
    */
   accept?: string;
+  /*
+   * A user-friendly description of the file type, for display purposes.
+   * For example, "jpg, png, gif".
+   */
+  acceptDescription?: string;
   multiple?: boolean;
 }>();
 

@@ -2,7 +2,11 @@
   <div class="mt-4">
     <h1 class="text-2xl">{{ t("toolName") }}</h1>
     <div class="mt-4">
-      <FileInput accept="image/*" @change="handleFileChange" />
+      <FileInput
+        accept="image/*"
+        acceptDescription="jpg,png,gif,webp,jpeg,bmp,svg,tiff,ico"
+        @change="handleFileChange"
+      />
     </div>
     <div v-if="currentFile" class="mt-4">
       <h2 class="text-lg">
