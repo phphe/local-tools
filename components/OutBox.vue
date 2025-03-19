@@ -7,7 +7,7 @@
 <style lang="scss">
 .out-box {
   position: relative;
-  padding: 0.5rem;
-  margin: -0.5rem; // 负margin来抵消padding，保持原来的间距
+  padding: 3px;
+  margin: -3px; // 负margin来抵消padding，保持原来的间距
 }
 </style>
