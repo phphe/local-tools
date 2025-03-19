@@ -90,7 +90,6 @@
 </template>
 
 <script setup lang="ts">
-import IconBtn from "~/components/IconBtn.vue";
 import { mdiClose } from "@mdi/js";
 
 interface ColorConfig {

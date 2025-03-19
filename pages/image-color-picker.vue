@@ -37,13 +37,20 @@
                 :style="{ backgroundColor: selectedColor.rgb }"
               ></div>
               <div class="text-sm">
-                {{ t("position") }}: ({{ selectedColor.x }}, {{ selectedColor.y }})
+                {{ t("position") }}: ({{ selectedColor.x }},
+                {{ selectedColor.y }})
               </div>
             </div>
             <div class="space-y-2">
-              <div v-for="(format, index) in colorFormats" :key="index" class="flex items-center gap-2">
+              <div
+                v-for="(format, index) in colorFormats"
+                :key="index"
+                class="flex items-center gap-2"
+              >
                 <span class="text-sm w-12">{{ format.label }}:</span>
-                <div class="flex-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded">
+                <div
+                  class="flex-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded"
+                >
                   {{ selectedColor[format.key] }}
                 </div>
                 <IconBtn
@@ -62,7 +69,6 @@
 
 <script setup lang="ts">
 import { mdiContentCopy } from "@mdi/js";
-import IconBtn from "~/components/IconBtn.vue";
 import { useClipboard } from "@vueuse/core";
 
 const { copy } = useClipboard();
@@ -76,9 +82,9 @@ interface ColorInfo {
 }
 
 const colorFormats = [
-  { key: 'rgb', label: 'RGB' },
-  { key: 'hex', label: 'HEX' },
-  { key: 'hsl', label: 'HSL' },
+  { key: "rgb", label: "RGB" },
+  { key: "hex", label: "HEX" },
+  { key: "hsl", label: "HSL" },
 ];
 
 // check browser support for image
@@ -118,10 +124,15 @@ const handleFileChange = (file: File) => {
 };
 
 const rgbToHex = (r: number, g: number, b: number) => {
-  return '#' + [r, g, b].map(x => {
-    const hex = x.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-  }).join('');
+  return (
+    "#" +
+    [r, g, b]
+      .map((x) => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("")
+  );
 };
 
 const rgbToHsl = (r: number, g: number, b: number) => {
@@ -130,7 +141,9 @@ const rgbToHsl = (r: number, g: number, b: number) => {
   b /= 255;
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
-  let h = 0, s, l = (max + min) / 2;
+  let h = 0,
+    s,
+    l = (max + min) / 2;
 
   if (max === min) {
     h = s = 0;
@@ -138,22 +151,30 @@ const rgbToHsl = (r: number, g: number, b: number) => {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
-      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-      case g: h = (b - r) / d + 2; break;
-      case b: h = (r - g) / d + 4; break;
+      case r:
+        h = (g - b) / d + (g < b ? 6 : 0);
+        break;
+      case g:
+        h = (b - r) / d + 2;
+        break;
+      case b:
+        h = (r - g) / d + 4;
+        break;
     }
     h /= 6;
   }
 
-  return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+  return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(
+    l * 100
+  )}%)`;
 };
 
 const pickColor = (e: MouseEvent) => {
   const img = imageRef.value;
   if (!img) return;
 
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
   canvas.width = img.naturalWidth;
   canvas.height = img.naturalHeight;
   ctx.drawImage(img, 0, 0);
@@ -163,10 +184,10 @@ const pickColor = (e: MouseEvent) => {
   const y = e.clientY - rect.top;
   const scaleX = img.naturalWidth / img.width;
   const scaleY = img.naturalHeight / img.height;
-  
+
   const pixel = ctx.getImageData(x * scaleX, y * scaleY, 1, 1).data;
   const [r, g, b] = pixel;
-  
+
   selectedColor.value = {
     rgb: `rgb(${r}, ${g}, ${b})`,
     hex: rgbToHex(r, g, b),
