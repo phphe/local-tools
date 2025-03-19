@@ -28,6 +28,8 @@
     "@unhead/vue": "^2.0.0-rc.8",
     "@unocss/nuxt": "66.1.0-beta.5",
     "@unocss/reset": "66.1.0-beta.5",
+    "@vueuse/core": "^13.0.0",
+    "@vueuse/nuxt": "^13.0.0",
     "cropperjs": "^1.5.13",
     "jszip": "^3.10.1",
     "nuxt": "^3.16.0",
