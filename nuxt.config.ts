@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxt/test-utils",
-    // "@nuxt/fonts",
+    "@nuxt/fonts",
     "@nuxtjs/i18n",
     "@nuxtjs/color-mode",
     "nuxt-gtag",
@@ -18,9 +18,7 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
-      ],
+      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
   },
   colorMode: {
