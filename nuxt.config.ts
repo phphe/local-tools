@@ -4,7 +4,6 @@ const appName = "Local Tools";
 export default defineNuxtConfig({
   compatibilityDate: "2025-03-16",
   devtools: { enabled: true },
-
   modules: [
     "@unocss/nuxt",
     "@vueuse/nuxt",
@@ -17,6 +16,13 @@ export default defineNuxtConfig({
     "nuxt-gtag",
     "@nuxtjs/sitemap",
   ],
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      ],
+    },
+  },
   colorMode: {
     classSuffix: "", //remove default '-mode' suffix
   },
