@@ -98,11 +98,15 @@ import { mdiMenu, mdiClose, mdiWhiteBalanceSunny, mdiGithub } from "@mdi/js";
 
 const { locale, locales, setLocale, localeProperties, t } = useI18n();
 
-useHead({
+// seo for locale
+const i18nHead = useLocaleHead();
+useHead(() => ({
   htmlAttrs: {
-    lang: locale,
+    lang: i18nHead.value.htmlAttrs!.lang,
   },
-});
+  link: [...(i18nHead.value.link || [])],
+  meta: [...(i18nHead.value.meta || [])],
+}));
 
 const sidebarVisible = ref(true);
 const sm = computed(() => windowSize.value.width < 760);
