@@ -5,7 +5,7 @@
     >
       <NuxtLinkLocale to="/" class="flex items-center">
         <img src="/favicon.png" alt="logo" class="h-8 mr-2" />
-        {{ t("appName") }}
+        {{ $t("appName") }}
       </NuxtLinkLocale>
       <div class="flex-grow"></div>
       <a
@@ -87,7 +87,7 @@
         <slot />
       </div>
       <div class="py-10 text-center text-sm text-gray-500 dark:text-gray-300">
-        Copyright © {{ t("appName") }} {{ year }}. All rights reserved.
+        Copyright © {{ $t("appName") }} {{ year }}. All rights reserved.
       </div>
     </div>
   </div>

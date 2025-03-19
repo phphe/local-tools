@@ -24,6 +24,14 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "", //remove default '-mode' suffix
   },
+  gtag: {
+    id: "G-SK9BR8SJTB",
+    enabled: process.env.NODE_ENV === "production",
+  },
+  site: {
+    url: "https://local-tools.phphe.com",
+    name: appName,
+  },
   i18n: {
     // vueI18n: "./i18n.config.ts",
     // used in URL path prefix
