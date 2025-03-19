@@ -23,7 +23,7 @@
             href="#"
             v-for="locale in locales"
             :key="locale.code"
-            @click.prevent.stop="setLocale(locale.code)"
+            @click.prevent="setLocale(locale.code)"
             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             {{ locale.name }}
