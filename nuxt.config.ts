@@ -40,47 +40,47 @@ export default defineNuxtConfig({
       {
         code: "en",
         name: "English",
-        iso: "en-US", // 添加 ISO 语言代码
+        language: "en-US",
       },
       {
         code: "zh",
         name: "简体中文",
-        iso: "zh-CN",
+        language: "zh-CN",
       },
       {
         code: "es",
         name: "Español",
-        iso: "es-ES",
+        language: "es-ES",
       },
       {
         code: "pt",
         name: "Português",
-        iso: "pt-BR",
+        language: "pt-BR",
       },
       {
         code: "id",
         name: "Bahasa Indonesia",
-        iso: "id-ID",
+        language: "id-ID",
       },
       {
         code: "fr",
         name: "Français",
-        iso: "fr-FR",
+        language: "fr-FR",
       },
       {
         code: "ja",
         name: "日本語",
-        iso: "ja-JP",
+        language: "ja-JP",
       },
       {
         code: "ru",
         name: "Русский",
-        iso: "ru-RU",
+        language: "ru-RU",
       },
       {
         code: "de",
         name: "Deutsch",
-        iso: "de-DE",
+        language: "de-DE",
       },
     ],
     defaultLocale: "en",
