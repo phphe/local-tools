@@ -1,82 +1,13 @@
-# Nuxt Minimal Starter
+# Local Tools
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A series of practical tools developed using the browser API, allowing you to easily process various files such as pictures and audio. No need to upload, no need to register, free and open source. [Get started now](https://local-tools.phphe.com)
 
-## Setup
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+使用浏览器 API 开发的一系列实用的工具，让您可以方便地处理图片、音频等各种文件。无需上传，无需注册，免费开源。[立即开始](https://local-tools.phphe.com)
 
 ## License
 
 This project is licensed under Commons Clause + MIT License. This means:
+
 - ✅ Free to use, modify and distribute
 - ✅ Can be used in personal and non-commercial projects
 - ❌ Commercial sale of the software or its derivatives is prohibited
